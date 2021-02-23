@@ -59,11 +59,14 @@ class Timer extends React.Component {
   }
   buttonClickHandler(){
     document.addEventListener("keydown",this.handleListener);
-    this.setState({
+    this.setState(()=>{
+    return{
       x:0,
       y:0,
       time:0
+    } 
     });
+    this.timer=clearInterval(this.timer);
     this.timer =setInterval(()=>
       this.setState(
         {
@@ -104,6 +107,7 @@ class Timer extends React.Component {
 }
 
 export default Timer;
+
 
 // import React, { Component, useState } from "react";
 // import "../styles/App.css";
