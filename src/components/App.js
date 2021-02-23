@@ -8,8 +8,8 @@ class Timer extends React.Component {
     this.state = { time: 0, x: 0, y: 0,
       renderball:false
      };
-     var remove;
-     var timer;
+   
+     let timer;
      this.handleListener=this.handleListener.bind(this);
   }
   handleListener(event){
@@ -20,30 +20,28 @@ class Timer extends React.Component {
         case 37:
           this.setState(()=>{return{
             x:this.state.x-5,
-            y:this.state.y
+
           }});
           break;
         case 38:
              this.setState(()=>{return{
-              x:this.state.x,
               y:this.state.y-5
             }});
             break;
         case 39:
             this.setState(()=>{return{
               x:this.state.x+5,
-              y:this.state.y
             }});
             break;
         case 40:
            this.setState(()=>{return{
-             x:this.state.x,
+
              y:this.state.y+5
            }});
             break;
 
         }
-        
+        console.log(this.state.x,this.state.y);
         if(this.state.x==250 && this.state.y==250){
           clearInterval(this.timer);
           document.removeEventListener("keydown",this.handleListener);
@@ -55,7 +53,8 @@ class Timer extends React.Component {
   }
 
   componentWillUnmount() {
- 
+    clearInterval(this.timer);
+          document.removeEventListener("keydown",this.handleListener);
     return(<div></div>);
   }
   buttonClickHandler(){
